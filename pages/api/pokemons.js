@@ -1,6 +1,6 @@
 //import response from './pokemons.json' assert {type: 'json'};
 
-async function pokemon1(req, res) {
+async function pokemons(req, res) {
 
   const response = require('./pokemons.json');
   
@@ -12,7 +12,7 @@ async function pokemon1(req, res) {
 
 }
 
-export default pokemon1;
+export default pokemons;
 
 
 
