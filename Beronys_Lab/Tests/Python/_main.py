@@ -64,7 +64,7 @@ for i in range(searching_range):
     pokemon_spdefense.append(pokemon.stats[4].base_stat)
     pokemon_speed.append(pokemon.stats[5].base_stat)
     img = pb.SpriteResource('pokemon', j)
-    pokemon_img_url.append(str(img.url))
+    pokemon_img_url.append("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + str(j) + ".png")
 
 
 table = pandas.DataFrame({
@@ -87,17 +87,17 @@ table.index = pokemon_IDs
 
 print(table)
 
-with open("pokedex_database.txt", "w") as file_object:
-    file_object.write("\n")
+table.to_json('pokemons.json')
 
-        
+#with open("pokedex_database.txt", "w") as file_object:
+#    file_object.write("\n")
 
-with open("pokedex_database.txt", "a") as file_object:
-    file_object.write("CREATE TABLE IF NOT EXISTS pokemons (ID INTEGER, Name TEXT, Height REAL, Weight REAL, Type_1 TEXT, Type_2 TEXT, Hp INTEGER, Attack INTEGER, Defense INTEGER, Sp_Attack INTEGER, Sp_Defense INTEGER, Speed INTEGER, Image_url VARCHAR(200));\n")
-    for row in table.itertuples():
-        print("Saving number: " + str(row) + " from " +  str(searching_range) +"...")
-        insert_sql = f"INSERT INTO pokemons (ID, Name, Height, Weight, Type_1, Type_2, Hp, Attack, Defense, Sp_Attack, Sp_Defense, Speed, Image_url) VALUES ({row[0]},'{row[1]}',{row[2]},{row[3]},'{row[4]}','{row[5]}',{row[6]},{row[7]},{row[8]},{row[9]},{row[10]},{row[11]},'{row[12]}');\n"
-        file_object.write(insert_sql)
+#with open("pokedex_database.txt", "a") as file_object:
+#    file_object.write("CREATE TABLE IF NOT EXISTS pokemons (ID INTEGER, Name TEXT, Height REAL, Weight REAL, Type_1 TEXT, Type_2 TEXT, Hp INTEGER, Attack INTEGER, Defense INTEGER, Sp_Attack INTEGER, Sp_Defense INTEGER, Speed INTEGER, Image_url VARCHAR(200));\n")
+#    for row in table.itertuples():
+#        print("Saving number: " + str(row) + " from " +  str(searching_range) +"...")
+#        insert_sql = f"INSERT INTO pokemons (ID, Name, Height, Weight, Type_1, Type_2, Hp, Attack, Defense, Sp_Attack, Sp_Defense, Speed, Image_url) VALUES ({row[0]},'{row[1]}',{row[2]},{row[3]},'{row[4]}','{row[5]}',{row[6]},{row[7]},{row[8]},{row[9]},{row[10]},{row[11]},'{row[12]}');\n"
+#        file_object.write(insert_sql)
         
 
 
